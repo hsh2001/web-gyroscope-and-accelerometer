@@ -10,7 +10,7 @@
 // });
 
 const ball = document.getElementById('ball');
-const [ax, ay] = [ 0, 0 ];
+let [ax, ay] = [ 0, 0 ];
 
 Object.assign(ball.style, {
   background: '#000',
