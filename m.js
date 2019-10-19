@@ -11,6 +11,18 @@
 
 const ball = document.getElementById('ball');
 
+Object.assign(ball.style, {
+  background: '#000',
+  width: '30px',
+  height: '30px',
+  borderRadius: '100%',
+  position: 'fixed',
+  top: `${innerHeight / 2}px`,
+  left: `${innerWidth / 2}px`,
+});
+
+console.log(1);
+
 window.addEventListener('deviceorientation', event => {
   const dx = event.beta / 300 + parseFloat(ball.style.top);
   const dy = event.gamma / 300 + parseFloat(ball.style.left);
