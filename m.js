@@ -24,8 +24,8 @@ Object.assign(ball.style, {
 console.log(1);
 
 window.addEventListener('deviceorientation', event => {
-  const dx = event.beta / 300 + parseFloat(ball.style.top);
-  const dy = event.gamma / 300 + parseFloat(ball.style.left);
+  const dx = event.beta / 30 + parseFloat(ball.style.top);
+  const dy = event.gamma / 30 + parseFloat(ball.style.left);
 
   [
     'alpha',
