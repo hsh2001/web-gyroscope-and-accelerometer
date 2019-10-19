@@ -10,6 +10,7 @@
 // });
 
 const ball = document.getElementById('ball');
+const [ax, ay] = [ 0, 0 ];
 
 Object.assign(ball.style, {
   background: '#000',
@@ -21,11 +22,11 @@ Object.assign(ball.style, {
   left: `${innerWidth / 2}px`,
 });
 
-console.log(1);
-
 window.addEventListener('deviceorientation', event => {
-  const dx = event.beta / 30 + parseFloat(ball.style.top);
-  const dy = event.gamma / 30 + parseFloat(ball.style.left);
+  ax += event.beta / 600;
+  ay += event.gamma / 300;
+  const dx = ax + parseFloat(ball.style.top);
+  const dy = ay + parseFloat(ball.style.left);
 
   [
     'alpha',
