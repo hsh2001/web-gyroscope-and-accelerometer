@@ -33,11 +33,11 @@ function drawPointInCanvas() {
   }
 
   initCanvas();
-  ctx.fillRect(0, 0, 800, 300);
+  ctx.fillRect(0, 0, 800, 800);
   ctx.closePath();
   ctx.beginPath();
   speedList.map(
-    (e,i) => [i * ratio, (1 - e / 4) * canvas.height]
+    (e,i) => [i * ratio, (1 - e / 6) * canvas.height]
   ).forEach((e, i) => {
     i? ctx.lineTo(...e) : ctx.moveTo(...e);
   });
@@ -72,21 +72,33 @@ const evHandler = event => {
   if (dx <= 0) {
     dx = 0;
     ax *= -0.5
+    if (Math.abs(ax) < 0.05) {
+      ax = 0;
+    }
   }
 
   if (dy <= 0) {
     dy = 0;
     ay *= -0.5;
+    if (Math.abs(ay) < 0.05) {
+      ay = 0;
+    }
   }
 
   if (dx + 30 >= innerWidth) {
     dx = innerWidth - 30;
     ax *= -0.5;
+    if (Math.abs(ax) < 0.05) {
+      ax = 0;
+    }
   }
 
   if (dy + 30 >= innerHeight) {
     dy = innerHeight - 30;
     ay *= -0.5;
+    if (Math.abs(ay) < 0.05) {
+      ay = 0;
+    }
   }
 
   ball.style.top = `${dy.toFixed(2)}px`;
@@ -99,7 +111,6 @@ const evHandler = event => {
     = `(${[dx, dy].map(n => n.toFixed(2)).join()})`;
 
   speedList.push(Math.sqrt(ax ** 2 + ay ** 2));
-
   drawPointInCanvas();
 };
 
@@ -114,6 +125,7 @@ window.addEventListener('devicemotion', event => {
 
 let interval;
 window.testEv = testEv;
+testEv();
 function testEv(n = 1) {
   if (interval) clearInterval(interval);
   n *= 30;
