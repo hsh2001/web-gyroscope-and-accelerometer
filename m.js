@@ -37,7 +37,7 @@ function drawPointInCanvas() {
   ctx.closePath();
   ctx.beginPath();
   speedList.map(
-    (e,i) => [i * ratio, (1 - e / 15) * canvas.height]
+    (e,i) => [i * ratio, (1 - e / 25) * canvas.height]
   ).forEach((e, i) => {
     i? ctx.lineTo(...e) : ctx.moveTo(...e);
   });
