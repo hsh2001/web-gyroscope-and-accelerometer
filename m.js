@@ -37,7 +37,7 @@ function drawPointInCanvas() {
   ctx.closePath();
   ctx.beginPath();
   speedList.map(
-    (e,i) => [i * ratio, (1 - e / 6) * canvas.height]
+    (e,i) => [i * ratio, (1 - e / 15) * canvas.height]
   ).forEach((e, i) => {
     i? ctx.lineTo(...e) : ctx.moveTo(...e);
   });
@@ -55,8 +55,8 @@ Object.assign(ball.style, {
 });
 
 const evHandler = event => {
-  ax += event.gamma / 1500;
-  ay += event.beta / 750;
+  ax += event.gamma / 600;
+  ay += event.beta / 300;
 
   let dx = ax + parseFloat(ball.style.left);
   let dy = ay + parseFloat(ball.style.top);
@@ -72,7 +72,7 @@ const evHandler = event => {
   if (dx <= 0) {
     dx = 0;
     ax *= -0.5
-    if (Math.abs(ax) < 0.05) {
+    if (Math.abs(ax) < 0.1) {
       ax = 0;
     }
   }
@@ -80,7 +80,7 @@ const evHandler = event => {
   if (dy <= 0) {
     dy = 0;
     ay *= -0.5;
-    if (Math.abs(ay) < 0.05) {
+    if (Math.abs(ay) < 0.1) {
       ay = 0;
     }
   }
@@ -88,7 +88,7 @@ const evHandler = event => {
   if (dx + 30 >= innerWidth) {
     dx = innerWidth - 30;
     ax *= -0.5;
-    if (Math.abs(ax) < 0.05) {
+    if (Math.abs(ax) < 0.1) {
       ax = 0;
     }
   }
@@ -96,7 +96,7 @@ const evHandler = event => {
   if (dy + 30 >= innerHeight) {
     dy = innerHeight - 30;
     ay *= -0.5;
-    if (Math.abs(ay) < 0.05) {
+    if (Math.abs(ay) < 0.1) {
       ay = 0;
     }
   }
