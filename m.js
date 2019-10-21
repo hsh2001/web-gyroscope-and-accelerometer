@@ -66,7 +66,7 @@ const evHandler = event => {
     'beta',
     'gamma',
   ].forEach(key => {
-    document.getElementById(key).innerHTML = event[key];
+    document.getElementById(key).innerHTML = event[key].toFixed(2);
   });
 
   if (dx <= 0) {
@@ -104,13 +104,15 @@ const evHandler = event => {
   ball.style.top = `${dy.toFixed(2)}px`;
   ball.style.left = `${dx.toFixed(2)}px`;
 
+  const speedSize = Math.sqrt(ax ** 2 + ay ** 2);
+
   document.getElementById('ball-s').innerHTML
-    = `(${[ax, ay].map(n => n.toFixed(2)).join()})`;
+    = `${(speedSize * 60).toFixed(2)}`;
 
   document.getElementById('ball-p').innerHTML
     = `(${[dx, dy].map(n => n.toFixed(2)).join()})`;
 
-  speedList.push(Math.sqrt(ax ** 2 + ay ** 2));
+  speedList.push(speedSize);
   drawPointInCanvas();
 };
 
@@ -119,7 +121,7 @@ window.addEventListener('deviceorientation', evHandler, true);
 window.addEventListener('devicemotion', event => {
   const acc = event.accelerationIncludingGravity;
   Array.from("xyz").forEach(key => {
-    document.getElementById(key).innerHTML = acc[key];
+    document.getElementById(key).innerHTML = acc[key].toFixed(2);
   });
 }, true);
 

@@ -12,31 +12,37 @@
   <body>
     <canvas id="canvas" width="800" height="800"></canvas>
     <div>
-      <p>자이로</p>
       <p>
-        alpha: <span id="alpha"></span><br>
-        beta: <span id="beta"></span><br>
-        gamma: <span id="gamma"></span><br>
+        자이로: <br>
+        (alpha, bata, gamma) =
+        (
+        <span id="alpha"></span>,
+        <span id="beta"></span>,
+        <span id="gamma"></span>
+        )
       </p>
     </div>
     <hr>
     <div>
-      <p>가속도</p>
       <p>
-        x: <span id="x"></span><br>
-        y: <span id="y"></span><br>
-        z: <span id="z"></span><br>
+        가속도: <br>
+        (x, y, z) =
+        (
+        <span id="x"></span>,
+        <span id="y"></span>,
+        <span id="z"></span>
+        )
       </p>
     </div>
     <hr>
     <div>
       <p>공</p>
       <p>
-        위치: <span id="ball-p"></span> <br>
-        속도: <span id="ball-s"></span>
+        위치: (x, y) = <span id="ball-p"></span> <br>
+        속도: <span id="ball-s"></span> pixel / sec
       </p>
     </div>
     <div id="ball"></div>
-    <script async type="module" src="m.js?a0"></script>
+    <script async src="m.js?a0"></script>
   </body>
 </html>
