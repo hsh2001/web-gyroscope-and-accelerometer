@@ -22,11 +22,12 @@ Object.assign(ball.style, {
   left: `${innerWidth / 2}px`,
 });
 
-window.addEventListener('deviceorientation', event => {
-  ax += event.beta / 600;
-  ay += event.gamma / 300;
-  const dx = ax + parseFloat(ball.style.top);
-  const dy = ay + parseFloat(ball.style.left);
+const evHandler = event => {
+  ax += event.beta / 6000;
+  ay += event.gamma / 3000;
+
+  let dx = ax + parseFloat(ball.style.left);
+  let dy = ay + parseFloat(ball.style.top);
 
   [
     'alpha',
@@ -36,9 +37,35 @@ window.addEventListener('deviceorientation', event => {
     document.getElementById(key).innerHTML = event[key];
   });
 
-  ball.style.top = `${dx.toFixed(2)}px`;
-  ball.style.left = `${dy.toFixed(2)}px`;
-}, true);
+  if (dx <= 0) {
+    dx = ax = 0;
+  }
+
+  if (dy <= 0) {
+    dy = ay = 0;
+  }
+
+  if (dx + 30 >= innerWidth) {
+    dx = innerWidth - 30;
+    ax = 0;
+  }
+
+  if (dy + 30 >= innerHeight) {
+    dy = innerHeight - 30;
+    ay = 0;
+  }
+
+  ball.style.top = `${dy.toFixed(2)}px`;
+  ball.style.left = `${dx.toFixed(2)}px`;
+
+  document.getElementById('ball-s').innerHTML
+    = `(${[ax, ay].map(n => n.toFixed(2)).join()})`;
+
+  document.getElementById('ball-p').innerHTML
+    = `(${[dx, dy].map(n => n.toFixed(2)).join()})`;
+};
+
+window.addEventListener('deviceorientation', evHandler, true);
 
 window.addEventListener('devicemotion', event => {
   const acc = event.accelerationIncludingGravity;
@@ -46,3 +73,17 @@ window.addEventListener('devicemotion', event => {
     document.getElementById(key).innerHTML = acc[key];
   });
 }, true);
+
+let interval;
+function testEv(n = 1) {
+  if (interval) clearInterval(interval);
+  n *= 30;
+  interval = setInterval(() => {
+    console.log(ax, ay);
+    evHandler({
+      alpha: n,
+      beta: n,
+      gamma: n,
+    });
+  }, 1);
+}
