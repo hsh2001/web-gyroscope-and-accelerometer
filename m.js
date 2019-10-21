@@ -125,7 +125,6 @@ window.addEventListener('devicemotion', event => {
 
 let interval;
 window.testEv = testEv;
-testEv();
 function testEv(n = 1) {
   if (interval) clearInterval(interval);
   n *= 30;
