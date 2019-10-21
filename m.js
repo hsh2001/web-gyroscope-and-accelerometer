@@ -23,8 +23,8 @@ Object.assign(ball.style, {
 });
 
 const evHandler = event => {
-  ax += event.beta / 6000;
-  ay += event.gamma / 3000;
+  ax += event.gamma / 6000;
+  ay += event.beta / 3000;
 
   let dx = ax + parseFloat(ball.style.left);
   let dy = ay + parseFloat(ball.style.top);
