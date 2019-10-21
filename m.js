@@ -55,8 +55,8 @@ Object.assign(ball.style, {
 });
 
 const evHandler = event => {
-  ax += event.gamma / 6000;
-  ay += event.beta / 3000;
+  ax += event.gamma / 3000;
+  ay += event.beta / 1500;
 
   let dx = ax + parseFloat(ball.style.left);
   let dy = ay + parseFloat(ball.style.top);
@@ -70,21 +70,23 @@ const evHandler = event => {
   });
 
   if (dx <= 0) {
-    dx = ax = 0;
+    dx = 0;
+    ax *= -0.5
   }
 
   if (dy <= 0) {
-    dy = ay = 0;
+    dy = 0;
+    ay *= -0.5;
   }
 
   if (dx + 30 >= innerWidth) {
     dx = innerWidth - 30;
-    ax = 0;
+    ax *= -0.5;
   }
 
   if (dy + 30 >= innerHeight) {
     dy = innerHeight - 30;
-    ay = 0;
+    ay *= -0.5;
   }
 
   ball.style.top = `${dy.toFixed(2)}px`;
@@ -115,7 +117,6 @@ function testEv(n = 1) {
   if (interval) clearInterval(interval);
   n *= 30;
   interval = setInterval(() => {
-    console.log(ax, ay);
     evHandler({
       alpha: n,
       beta: n,
