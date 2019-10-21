@@ -55,8 +55,8 @@ Object.assign(ball.style, {
 });
 
 const evHandler = event => {
-  ax += event.gamma / 3000;
-  ay += event.beta / 1500;
+  ax += event.gamma / 1500;
+  ay += event.beta / 750;
 
   let dx = ax + parseFloat(ball.style.left);
   let dy = ay + parseFloat(ball.style.top);
@@ -113,6 +113,7 @@ window.addEventListener('devicemotion', event => {
 }, true);
 
 let interval;
+window.testEv = testEv;
 function testEv(n = 1) {
   if (interval) clearInterval(interval);
   n *= 30;
