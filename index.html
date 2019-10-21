@@ -3,7 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, viewport-fit=cover">
-    <title></title>
+    <style media="screen">
+      canvas {
+        width: 100%;
+      }
+    </style>
   </head>
   <body>
     <div>
@@ -31,7 +35,8 @@
         속도: <span id="ball-s"></span>
       </p>
     </div>
+    <canvas id="canvas" width="800" height="300"></canvas>
     <div id="ball"></div>
-    <script async src="m.js?k2d"></script>
+    <script async type="module" src="m.js?k2d"></script>
   </body>
 </html>

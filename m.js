@@ -10,7 +10,39 @@
 // });
 
 const ball = document.getElementById('ball');
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const speedList = [];
 let [ax, ay] = [ 0, 0 ];
+
+initCanvas();
+function initCanvas() {
+  Object.assign(ctx, {
+    fillStyle: '#eee',
+    strokeStyle: '#f00',
+    lineWidth: 3,
+  });
+}
+
+function drawPointInCanvas() {
+  const dataSize = 100;
+  const ratio = canvas.width / dataSize;
+
+  while (speedList.length > dataSize) {
+    speedList.shift();
+  }
+
+  initCanvas();
+  ctx.fillRect(0, 0, 800, 300);
+  ctx.closePath();
+  ctx.beginPath();
+  speedList.map(
+    (e,i) => [i * ratio, (1 - e / 4) * canvas.height]
+  ).forEach((e, i) => {
+    i? ctx.lineTo(...e) : ctx.moveTo(...e);
+  });
+  ctx.stroke();
+}
 
 Object.assign(ball.style, {
   background: '#000',
@@ -63,6 +95,10 @@ const evHandler = event => {
 
   document.getElementById('ball-p').innerHTML
     = `(${[dx, dy].map(n => n.toFixed(2)).join()})`;
+
+  speedList.push(Math.sqrt(ax ** 2 + ay ** 2));
+
+  drawPointInCanvas();
 };
 
 window.addEventListener('deviceorientation', evHandler, true);
